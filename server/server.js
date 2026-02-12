@@ -4,6 +4,7 @@ dotenv.config();
 import session from "express-session";
  import express, { json } from "express";
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
 import cors from "cors";
 import { Teachers, Subject ,Exam} from "./Models/Teacher.js";
 import Staff from "./Routes/Staff.js";
@@ -12,15 +13,27 @@ import Courses from "./Models/Course.js";
 import transporter from "./Models/Mailer.js";
 const app = express();
 app.use(cors({
-  origin:true,
+  origin:"http://localhost:4173",
   credentials:true,
 }));
 app.use(express.json());
-app.use(session({
-   secret: process.env.SESSION_SECRET,
-  resave:false,
-  saveUninitialized:false
-}))
+  app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI, 
+    collectionName: "sessions"
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+    sameSite: "lax",   // frontend ke liye
+    secure: false      // localhost pe false
+  }
+}));
+
+
+
 // Routes
 app.use("/api", Staff);
 app.use("/api/Courses", Courseroute);
@@ -179,8 +192,8 @@ app.get("/api/course/stats",async(req,res)=>{
 
 // Login API
  app.post("/api/login", async (req, res) => {
+   console.log("BODY RECEIVED:", req.body); 
   const { Username, Password } = req.body;
-
   // Check admin/teacher first
   const user = await User.findOne({ Username: Username.trim(), Password: Password.trim() });
   if (user) {
@@ -288,4 +301,6 @@ app.get("/api/authcheck",async(req,res)=>{
 })
 
 // -------------------- SERVER START --------------------
-app.listen(process.env.PORT, () => console.log("Server running on http://localhost:5001 hello be"));
+ const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
