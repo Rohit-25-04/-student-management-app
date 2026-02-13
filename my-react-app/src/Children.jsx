@@ -33,7 +33,7 @@ function StudentDashboard() {
       });
   }, []);
  const handlelogout=async()=>{
- axios.post("http://localhost:5001/api/logout",{},
+ axios.post(`${import.meta.env.VITE_API_URL}/api/logout`,{},
     {withCredentials:true}
      
  )
@@ -43,7 +43,7 @@ function StudentDashboard() {
   // ================= STUDENT =================
   const studentdata = async () => {
     try {
-      const res = await fetch("http://localhost:5001/api/me", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/me`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -57,7 +57,7 @@ function StudentDashboard() {
   // ================= SUBJECT =================
   const subjectdata = async () => {
     try {
-      const res = await fetch("http://localhost:5001/api/subject");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/subject`);
       const data = await res.json();
       setsubjects(data);
     } catch (err) {
@@ -69,7 +69,7 @@ function StudentDashboard() {
  const fetchActiveSession = async () => {
   try {
     const res = await axios.get(
-      "http://localhost:5001/api/attendance/active",
+      `${import.meta.env.VITE_API_URL}/api/attendance/active`,
       { withCredentials: true }
     );
 
@@ -93,7 +93,7 @@ function StudentDashboard() {
 
   try {
     await axios.post(
-      "http://localhost:5001/api/attendance/mark",
+      `${import.meta.env.VITE_API_URL}/api/attendance/mark`,
       {
         sessionId: activeSession._id,
         studentId: sdata._id,
