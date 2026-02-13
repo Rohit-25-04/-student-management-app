@@ -23,13 +23,7 @@ export default function StudentMarksPanel() {
       setLoading(false);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="p-6 text-center h-screen text-gray-600">Loading marks...</div>
-    );
-  }
-
+ 
   return (
     <div className="p-4 h-screen  md:p-6">
       <h2 className="text-xl md:text-2xl font-bold mb-4">My Exam Marks</h2>
