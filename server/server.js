@@ -13,24 +13,25 @@ import Courses from "./Models/Course.js";
 import transporter from "./Models/Mailer.js";
 const app = express();
 app.use(cors({
-  origin:true,
+  origin: "http://localhost:5173",
   credentials:true,
 }));
 app.use(express.json());
-  app.use(session({
+  
+ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URI, 
-    collectionName: "sessions"
+    mongoUrl: process.env.MONGO_URI,
   }),
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
-    sameSite: "lax",   // frontend ke liye
-    secure: false      // localhost pe false
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: "none",   // 👈 MUST for cross-site
+    secure: true        // 👈 Render = HTTPS
   }
 }));
+
 // Routes
 app.use("/api", Staff);
 app.use("/api/Courses", Courseroute);
