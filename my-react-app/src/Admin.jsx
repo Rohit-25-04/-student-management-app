@@ -90,25 +90,25 @@ function Admin() {
     fetchstudent();
     fetchcourse();
     fetchsubject()
-     axios.get(`${import.meta.env.VITE_API_URL}/api/authcheck`,{Credentials:"include"} ,{ withCredentials: true })
+     axios.get(`${import.meta.env.VITE_API_URL}/api/authcheck` ,{ withCredentials: true })
     .catch(() => {
       navigate("/login");
     });
 }, []);  
 const fetchsubject=async()=>{
-  const res=await fetch(`${import.meta.env.VITE_API_URL}/api/subject/stats`)
+  const res=await fetch(`${import.meta.env.VITE_API_URL}/api/subject/stats`,{credentials:"include"})
   const data=await res.json();
   console.log(data)
   setsubjectcount(data);
 }
 const fetchstudent=async()=>{
-  const res= await fetch(`${import.meta.env.VITE_API_URL}/api/stats/type`)
+  const res= await fetch(`${import.meta.env.VITE_API_URL}/api/stats/type`, {credentials: "include"})
   const data= await res.json()
   settotal(data)
   console.log(total)
 }
 const fetchcourse=async()=>{
-  const res= await fetch(`${import.meta.env.VITE_API_URL}/api/course/stats`)
+  const res= await fetch(`${import.meta.env.VITE_API_URL}/api/course/stats` ,{credentials:"include"})
   const sdata= await res.json()
   settotalcourse(sdata)
   console.log(totalcourse)
