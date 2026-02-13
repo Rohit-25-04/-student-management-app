@@ -75,27 +75,30 @@ function Login() {
   const [Username, setUsername] = useState("");  // Capital U
   const [Password, setPassword] = useState("");  // Capital P
   const navigate = useNavigate();
+ const handleLogin = async (e) => {
+  e.preventDefault();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
-        Username,   // match MongoDB field
-        Password,
-      },{withCredentials:true},{Credential:"include"}
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/login`,
+      { Username, Password },
+      { withCredentials: true }
     );
 
-      const role = res.data.role;
+    console.log("LOGIN RES 👉", res.data);
 
-      if (role === "admin") navigate("/admin");
-      else if (role === "teacher") navigate("/teacher");
-      else if (role === "student") navigate("/student");
+    const role = res.data.role;
 
-    } catch (err) {
-      alert("Invalid Username or Password");
-    }
-  };
+    if (role === "admin") navigate("/admin");
+    else if (role === "teacher") navigate("/teacher");
+    else if (role === "student") navigate("/student");
+    else alert("Role not recognized");
+
+  } catch (err) {
+    console.log("LOGIN ERROR 👉", err.response?.data || err.message);
+    alert("Invalid Username or Password");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-600">

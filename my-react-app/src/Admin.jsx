@@ -90,10 +90,7 @@ function Admin() {
     fetchstudent();
     fetchcourse();
     fetchsubject()
-  axios
-    .get(`${import.meta.env.VITE_API_URL}/api/authcheck`, {
-      withCredentials: true,
-    })
+     axios.get(`${import.meta.env.VITE_API_URL}/api/authcheck`,{Credentials:"include"} ,{ withCredentials: true })
     .catch(() => {
       navigate("/login");
     });

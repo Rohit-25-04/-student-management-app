@@ -78,7 +78,7 @@ function TeacherMarks() {
 
         {/* SUBJECT */}
         <select
-          className="border rounded-lg p-2"
+          className="border text-black md:w-40 lg:w-55 xl:w-74 w-60 rounded-lg p-2"
           value={selectedSubject}
           onChange={(e) => {
             const subId = e.target.value;
@@ -100,7 +100,7 @@ function TeacherMarks() {
 
         {/* SEMESTER */}
         <input
-          className="border rounded-lg p-2 bg-gray-100"
+          className="border text-black md:w-40 lg:w-55 xl:w-74 w-60 rounded-lg p-2 bg-gray-100"
           value={semester}
           placeholder="Semester"
           readOnly
@@ -108,7 +108,7 @@ function TeacherMarks() {
 
         {/* EXAM */}
         <select
-          className="border rounded-lg p-2"
+          className="border text-black md:w-40 lg:w-55 xl:w-74 w-60 rounded-lg p-2"
           value={selectedExam}
           onChange={(e) => setSelectedExam(e.target.value)}
         >
@@ -121,15 +121,15 @@ function TeacherMarks() {
         {/* LOAD BUTTON */}
         <button
           onClick={loadStudents}
-          className="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700"
+          className="bg-blue-600 text-white md:w-40 lg:w-55 xl:w-74 w-60 rounded-lg px-4 py-2 hover:bg-blue-700"
         >
           Load Students
         </button>
       </div>
 
       {/* STUDENTS TABLE */}
-      <div className="bg-white rounded-xl shadow overflow-x-auto">
-        <table className="w-full text-left">
+      <div className="bg-white w-70 md:w-full rounded-xl shadow overflow-scroll">
+        <table className="md:w-full   mr-5 text-black text-left">
           <thead className="bg-gray-200">
             <tr>
               <th className="p-3">Roll No</th>
