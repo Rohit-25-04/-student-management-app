@@ -199,6 +199,8 @@ app.get("/api/course/stats",async(req,res)=>{
       role: user.role,   // admin/teachercd
       Username: user.Username
     };
+    console.log("MATCHED USER:", user);
+
     return res.json({ role: user.role });
   }
 
