@@ -26,12 +26,12 @@ export default function StudentMarksPanel() {
 
   if (loading) {
     return (
-      <div className="p-6 text-center text-gray-600">Loading marks...</div>
+      <div className="p-6 text-center h-screen text-gray-600">Loading marks...</div>
     );
   }
 
   return (
-    <div className="p-4 h-screen    md:p-6">
+    <div className="p-4 h-screen  md:p-6">
       <h2 className="text-xl md:text-2xl font-bold mb-4">My Exam Marks</h2>
 
       <div className="bg-white  shadow rounded-2xl  ">
