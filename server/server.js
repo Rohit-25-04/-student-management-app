@@ -17,19 +17,23 @@ app.use(cors({
   credentials:true,
 }));
 app.use(express.json());
-  
- app.use(session({
+   app.set("trust proxy", 1);   // ⭐ VERY IMPORTANT for Render
+
+app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
-  }), cookie: {
-  maxAge: 1000 * 60 * 60 * 24,
-  sameSite: "none",
-  secure: true
-}
+    collectionName: "sessions"
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: "none",   // ⭐ cross-site ke liye
+    secure: true        // ⭐ HTTPS required (Render + Netlify both https)
+  }
 }));
+
 
 // Routes
 app.use("/api", Staff);
