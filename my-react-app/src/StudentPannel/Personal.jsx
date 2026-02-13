@@ -16,10 +16,9 @@ function PersonalDetails() {
     setpdata(data);
   };
 
-  if (!pdata) return <p className="p-6">Loading...</p>;
+  
 
   return (
-    <div className="bg-white h-screen"> 
     <div className="min-h-screen bg-green-300 p-6">
       <h1 className="text-2xl font-bold mb-6">Personal Details</h1>
 
@@ -43,7 +42,7 @@ function PersonalDetails() {
         <Detail label="Paid Fees" value={pdata.Paidfee} />
         <Detail label="Total Fees" value={pdata.Totalfee} />
       </div>
-    </div> </div>
+    </div>
   );
 }
 
