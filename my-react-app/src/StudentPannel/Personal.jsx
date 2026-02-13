@@ -16,7 +16,7 @@ function PersonalDetails() {
     setpdata(data);
   };
 
-  
+  if (!pdata) return <p className="p-6">Loading...</p>;
 
   return (
     <div className="min-h-screen bg-green-300 p-6">
