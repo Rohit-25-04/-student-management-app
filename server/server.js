@@ -24,12 +24,11 @@ app.use(express.json());
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
-  }),
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24,
-    sameSite: "none",   // 👈 MUST for cross-site
-    secure: true        // 👈 Render = HTTPS
-  }
+  }), cookie: {
+  maxAge: 1000 * 60 * 60 * 24,
+  sameSite: "none",
+  secure: true
+}
 }));
 
 // Routes
