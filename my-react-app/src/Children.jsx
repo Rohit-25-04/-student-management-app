@@ -6,7 +6,7 @@ import Studentpie from "./Studentpie";
 import PersonalDetails from "./StudentPannel/Personal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import StudentMarksPanel from "./StudentPannel/result";
+import StudentMarksPanel from "./StudentPannel/Result";
 
 
 function StudentDashboard() {
