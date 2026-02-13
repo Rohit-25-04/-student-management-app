@@ -13,7 +13,7 @@ import Courses from "./Models/Course.js";
 import transporter from "./Models/Mailer.js";
 const app = express();
 app.use(cors({
-  origin:"http://localhost:4173",
+  origin:true,
   credentials:true,
 }));
 app.use(express.json());
@@ -31,9 +31,6 @@ app.use(express.json());
     secure: false      // localhost pe false
   }
 }));
-
-
-
 // Routes
 app.use("/api", Staff);
 app.use("/api/Courses", Courseroute);
