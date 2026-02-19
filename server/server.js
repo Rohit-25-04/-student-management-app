@@ -13,7 +13,7 @@ import Courses from "./Models/Course.js";
 import transporter from "./Models/Mailer.js";
 const app = express();
 app.use(cors({
-  origin: "https://chic-cobbler-298e53.netlify.app",
+  origin: "https://collage-management-app.netlify.app/",
   credentials:true,
 }));
 app.use(express.json());
